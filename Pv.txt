@@ -1,0 +1,428 @@
+
+* So sánh context và redux
+	cả context Provider và redux đều dùng để quản lý state 
+	- Giống nhau :
+		+ đều cho phép lưu trữ và chia sẽ state
+		+ cho phép thực hiện các hành động và cập nhập trạng thái của ứng dụng
+	- Khác nhau :
+		+ Context Provider: truyền dữ liệu từ cha sang đến con thông qua cay component mà k cần sử dụng props.
+		  thường xử dụng cho các quy mô nhỏ
+		+ Redux : . Redux sử dụng một store để lưu trữ trạng thái của ứng dụng. Sử dụng cho các dự án quy mô lớn
+		  và phức tạp hơn kiểu như nhìu thành phần cùng 1 trạng thái ( useSelector )
+	+ Các components của Redux 
+		• Store: Chứa toàn bộ trạng thái (state) của ứng dụng.
+		• Action: Là một object mô tả sự kiện xảy ra trong ứng dụng ( 2 trường type :tên action và payload (dữ liệu đi kèm nếu có))
+			được gửi từ ứng dụng tới Redux để thông báo về việc thay đổi trạng thái.
+		• Reducer:  Là một hàm xử lý các action để thay đổi trạng thái trong store. Reducer nhận vào trạng thái hiện tại và action,
+			 sau đó trả về một trạng thái mới dựa trên thông tin của action
+		• Dispatch:  là một hàm được sử dụng để gửi action từ ứng dụng tới Redux
+* So sánh css và scss
+	-Biến
+		+ css không hỗ trợ khai báo biến phải thay đổi trực tiếp
+		+ scss hỗ trợ khai báo biến cho phép khai báo 1 giá trí và sử dụng bất kỳ ở đâu trong 1 tệp ( khai báo : $name :a ,truy xuất :$name )
+	-Nesting
+		+ css không cho phép lồng các quy tắc, điều này có nghĩa là các quy tắc phải được định dạng riêng lẻ.
+		+ scss cho phép lồng các quy tắc, giúp mã trở nên dễ đọc và tổ chức hơn.
+	-Import
+		+ CSS cho phép ta import các tệp CSS khác vào trong tệp hiện tại bằng cách sử dụng thẻ <link> trong HTML.
+		+ SCSS cũng cho phép ta import các tệp SCSS khác vào trong tệp hiện tại bằng cách sử dụng lệnh @import trong SCSS
+	-Mixins 
+		+ CSS không hỗ trợ Mixin, điều này khiến cho việc tái sử dụng mã khó khăn 
+		+ SCSS hỗ trợ Mixin, cho phép ta định nghĩa một tập hợp các quy tắc CSS và sau đó sử dụng
+		  chúng ở bất kỳ đâu trong tệp SCSS.
+		Khai báo @mixin name().
+		Gọi      @include name().
+*so sánh flex và grid
+	-Định hướng
+		+ flex là một hệ thống bố cục một chiều
+		+ grid là một hệ thống bố cục hai chiều
+	-Xử lý lỗi:
+		+ Flexbox: Nếu một phần tử bị tràn ra khỏi container, nó sẽ bị cắt bớt.
+		+ Grid: Nếu một phần tử bị tràn ra khỏi container, nó sẽ bị chồng lên các phần tử khác.
+*so sánh giữa sql và nosql
+	-Cấu trúc dữ liệu:
+		+ SQL: sử dụng mô hình cơ sở dữ liệu quan hệ, dữ liệu được lưu trữ trong các bảng có quan hệ với nhau.
+		+ NoSQL: không sử dụng mô hình quan hệ
+	-Ngôn ngữ truy vấn:	
+		+ SQL: sử dụng ngôn ngữ SQL để truy vấn và thao tác dữ liệu.  truy vấn phức tạp và tính toán
+		+ NoSQL: sử dụng các ngôn ngữ truy vấn khác như JavaScript, JSON, XML, ... .truy vấn đơn giản và thường xuyên
+---------------------------- HTML/CSS ---------------------------- 
+
+- Kích thước trong css
+	+ px : Một pixel tương đương với một điểm ảnh trên màn hình
+	+ em : Đơn vị em dựa trên kích thước của phông chữ hiện tại trong phần tử cha gần nhất
+		.container {
+	  		  font-size: 16px;
+		}
+
+		.text {
+			  font-size: 1.2em; /* 1.2 * 16px = 19.2px */
+ 			  padding: 1em; /* 1 * 16px = 16px */
+			  width: 10em; /* 10 * 16px = 160px */
+		}
+	+ rem : Đơn vị rem dựa trên kích thước của phông chữ được xác định trong phần tử gốc (root) k phụ thuộc vào phần tử cha
+		:root {
+		    	  font-size: 16px;
+		}
+
+		.text {
+			  font-size: 1.2rem; /* 1.2 * 16px = 19.2px */
+ 			 padding: 1rem; /* 1 * 16px = 16px */
+		}
+
+- Có 3 loại css :
+	- Inline CSS:được đặt trực tiếp trên thẻ HTML bằng thuộc tính "style".
+	- Internal CSS: được đặt trong thẻ <style> ở phần head của trang web.
+	- External CSS: được đặt trong một tập tin CSS riêng biệt và được liên kết với trang web thông qua thẻ <link>
+- Độ ưu tiên css:
+	-ID selector > Class hoặc attribute selector > Tag selector
+
+- Có 3 cách để canh giữa
+	-Sử dụng margin: auto
+	-Sử dụng position
+	-Sử dụng flexbox
+
+- position
+	+ Static  : không bị ảnh hưởng bởi các thuộc tính top, right, bottom, left. Không thể sử dụng thuộc tính z-index.
+	+ Relative .Các thuộc tính top, right, bottom, left sẽ di chuyển phần tử tương đối với vị trí ban đầu của nó.Có thể sử dụng thuộc tính z-index
+	+ Fixed (Cố định):
+	+ Absolute : Phần tử sẽ được định vị tương đối với phần tử cha gần nhất có position khác static.
+		      Khi phần tử cha có position: static, phần tử con sẽ được định vị tương đối với thẻ <body>
+	+ Sticky : chỉ hoạt động trong thành phần cha chứa nó nếu thành phần cha bị scroll ra ngoài window thì thành phần con có sử dụng sticky cũng sẽ bị kéo theo	
+
+- Đặt tên class theo BEM
+	-Block (B): là phần tử cơ bản nhất
+	-Element (E): là phần tử thuộc về block và được sử dụng để xác định các phần tử con bên trong block. 
+	-Modifier (M): là phần tử sử dụng để xác định trạng thái, kiểu dáng hay hành vi của block hoặc element.
+
+- Có 6 loại thẻ h1-h6 : chức năng quan trọng dùng để tối ưu hóa tiềm kiếm (SEO)
+
+- thẻ meta cung cấp thông tin mô tả về trang web có chức năng SEO
+	vd :
+	<meta name="description" content="" /> : định nghĩa mô tả trang web 
+	<meta name="author" content="John Doe"> : mô tả tác giả ..
+
+- Cấu trúc của thẻ html : 3 phần
+	+ P1: Thẻ <!DOCTYPE html> xác định rằng tệp này là một tệp HTML5. 
+	+ P2: Thẻ <head> chứa các thông tin về trang web, bao gồm tiêu đề trang và liên kết tới các tệp tài nguyên khác như CSS 
+	và JavaScript.
+	+ P3: Thẻ <body> chứa nội dung hiển thị trên trang web.
+	+ Thẻ <html> là thẻ gốc của tệp HTML và bao gồm toàn bộ nội dung của trang ( bọc hết lại )
+- position vs transform 
+	+ Thuộc tính position được sử dụng để xác định vị trí của một phần tử trên trang web
+	+ Thuộc tính transform được sử dụng để thay đổi hình dạng, kích thước hoặc vị trí của một phần tử trên trang web
+
+- Box model : là khoảng không gian phần tử chiếm trong trang web, có các thành phần như
+	+nội dung
+	+Padding  :là khoảng trống giữa nội dung và viền.
+	+Border   : là viền xung quanh phần tử.
+	+Margin   : là khoảng trống giữa phần tử và các phần tử khác
+
+- Import file css ở phần header : 
+	+ Để tăng tốc độ tải trang vì import vào thẻ <head> thì nó sẽ tải file css cùng với trang html 
+	+ Dể quản lý và bảo trì
+
+- Import file js ở phần footer :
+	+ Để tải js thì html nó sẽ phân tích từ trên xuống dưới nếu nó gặp file js thì nó sẽ phân tích file js trước 
+	khi phân tích phần còn lại. Vì vậy ta nên để file js ở phần footer để web tải nhanh hơn
+
+- Các thẻ inline : <b>, <a>, <strong>, <img>, <input>, <em>, <span> ...
+- Các thẻ block  : <h1>, <form>, <li>, <ol>, <ul>, <p>, <pre>, <table>, <div> ...
+- Inline : sẽ cùng 1 dòng nếu vượt quá độ dài của dòng thì tự động xuống dòng , không thể xét width và height , k dùng đc margin-top,bottom
+- block  : luôn xuống dòng nếu k xét width thì nó sẽ chiếm full, xét width height margin padding,..
+
+----------------------------------------------------  JS ---------------------------------------------------- 
+- Các kiểu dữ liệu
+	+ underfined
+	+ null
+	+ string 
+	+ number
+	+ boolean
+	+ object
+
+- Các High order trong js
+	+map (không thay đổi mảng ban đầu tạo ra 1 mảng mới)
+	+forEach(sử dụng callback thay đổi mang ban đầu vàkhông tạo đc mảng mới)
+	+some ( trả về true nếu 1 cái đúng)
+	+every ( trả về true nếu all đều đúng)
+	+filter ( loại ra theo điều kiện) 
+	+reduce ( gôm giá trị thành 1), trả về 1 mảng
+	=>  function chứa tham số là một callback, hoặc function trả về một function khác (closure)
+- Closure :  một hàm được tạo ra bên trong một hàm khác 
+
+- So sánh const , let , var
+	-var hỗ trợ hoisting, phạm vi sử dụng trong một function scope
+	-let const k hỗ trợ hoisting, phạm vi sử dụng trong một block scope ( là trong cặp ngoặc {},
+	 không được khai báo lại trong cùng một scope)
+- scope : có 2 loại  
+	+ global scope ( toàn cục ) : var
+	+ local scope ( cục bộ ) : truy xuất trong một hàm nhất định , block scope ( trong một khối lệnh nhất định : const , let)
+-Có cách nào thay đổi được giá trị của const ko? Tại sao?
+	+ nếu khai báocủa biến là một đối tượng (bao gồm mảng và object), thì các thuộc tính của đối tượng có thể được thay đổi.
+	nhưng k thể gán lại 1 giá trị khác.
+	=> nguyên nhân là khi thay đổi thì ta chỉ thay đổi vùng nhớ chứ k thay đổi giá trị của biến
+
+- undefined và null
+	+ tạo biến k gán giá trị thì undefined
+	+ null là object
+
+
+- Hoisting : biến khai báo sẽ được đẩy lên đầu nhưng chưa đc gán giá trị ( var). còn let , const không bị hoisting
+
+-  Function Declaration và Function Expression
+	+Function declaration sẽ sử dụng từ khóa function rồi đến tên hàm.( bị hoisting có thể gọi trước khi định nghaiax )
+      	+Function expression sẽ được bắt đầu với từ khóa var, const, hoặc let.( không bị hoisting )
+-arguments và super là gì
+	+arguments đại diện cho danh sách các tham số được truyền vào trong một hàm.
+	+super là một từ khóa được sử dụng trong lập trình hướng đối tượng (OOP) để truy cập các thuộc tính hoặc phương thức của lớp cha của một lớp con. 
+- Arrow function 
+	+ Không hiểu từ khóa this
+	const obj = {
+ 		 name: 'John',
+ 		 regularFunction: function() {
+  		  	console.log(this.name); // `this` trỏ đến obj
+ 		 },
+ 		 arrowFunction: () => {
+  			  console.log(this.name); // `this` kế thừa từ outer scope (global scope)
+  		 }
+		 };
+		obj.regularFunction(); // Kết quả: John
+		obj.arrowFunction(); // Kết quả: undefined (hoặc giá trị từ outer scope)
+
+	+ không bị hoisting
+	+ Không có arguments và super
+	+ kh có thuộc tính prototype
+	+ Không thể sử dụng làm constructor vì nó không có this riêng của nó và không thể ghi đè lên prototype.
+
+- Spead Operator : gộp các phần tử một cách gọn hơn ( cú pháp ...)
+
+- toFixed() : lấy số lượng phần tử sau dấu phẩy theo yêu cầu
+
+- Promise trong javascript : thực thi các bất đồng bộ . Có 3 trạng trái pending, fulfilled, reject.
+
+-event loop : là cơ chế xử lý sự kiện và các tác vụ bất đồng bộ. Khi có một tác vụ bất đồng bộ, nó sẽ được đưa vào hàng đợi
+ để được thực thi sau khi tất cả các tác vụ khác đã hoàn thành . vd như hàm setTimeout
+
+-Sử dụng gì để call api, ngoài axios : fetch và AJAX
+
+-Nếu có 3 promise đang chạy, nếu muốn chờ xong cả 3 mới làm thì dùng cách nào ?  
+	=> promise.all
+-Restful API là gì
+	+RESTful API là một kiểu kiến trúc thiết kế cho các ứng dụng web để thao tác với các tài nguyên trên server thông qua API
+
+-Callback , Promise, Async/Await
+	+ Callback :Hàm được truyền vào một hàm khác như một đối số và sẽ được gọi lại sau khi hoàn thành công việc
+		=> cú pháp phức tạo và lòng nhau và quản lý k tốt => sinh ra Promise
+=> gây ra callback hell : lồng nhau quá nhìu
+	+ Promise : Sử dụng then() và catch() để xử lý kết quả hoặc lỗi.
+		=> tạo ra một đối tượng Promise sau nó sẽ thực hiện dùng then để lấy ra kết quả
+		 vì quá nhìn then lòng nhau viết phức tạp nên sinh ra => Async/Await
+	+ Async/Await
+		=> trả về 1 promise , Await chờ Promise  giải quyết
+
+
+*  truy vấn class và sử dụng sự kiện trong JavaScript
+	+ document.querySelector('.tenclass')     : lấy phần tử đầu tiên khớp
+	+ document.querySelectorAll('.tenclass')  : lấy tất cả các phần tử khớp
+	+ document.getElementById('tenID')        : Truy vấn theo ID
+	+ document.getElementsByTagName('div');   : Truy vấn theo tên thẻ (tag name)
+	+ const element = document.querySelector('[data-href]'); : ấy các phần tử dựa vào các thuộc tính của chúng.
+	+ const elements = document.querySelectorAll('[data-toggle]');
+
+	+ element.addEventListener -> xử lý sự kiện
+--------------------------------------------------- -------------------------  Reactjs
+
+
+- Cách truyền dữ liệu giữa 2 component không liên quan với nhau
+	--> c1: để chung 1 component chung
+	--> c2: sử dụng context provider
+	--> c3: sử dụng redux
+
+
+
+-React là thư viện hay framework? Thư viện và framework khác nhau ở điểm nào ?	
+	-React là một thư viện
+	+Thư viện (library) là một tập hợp các chức năng được cung cấp để giải quyết các vấn đề cụ thể trong lập trình
+	+Framework là một khung (skeleton) của ứng dụng, bao gồm một tập các thư viện, tiện ích, quy chuẩn, kiến trúc và
+	hướng dẫn được cung cấp để giúp phát triển một ứng dụng từ đầu đến cuối.
+
+-React là gì :
+	+  là một thư viện JavaScript đc sử dụng xây dựng giao diện người dùng (UI) tương tác trong các ứng dụng web
+  	+  quản lý việc cập nhật giao diện, giao diện được cập nhập mỗi khi state thay đổi
+ 	+  đầu vào là các props và tạo ra các đầu ra (render) 
+
+-HOC :  Higher Order Component (HOC) có thể thêm các thuộc tính, hành vi, hoặc trạng thái bổ sung vào component mà không cần thay 
+đổi cấu trúc của component gốc. 
+	-Tính tái sử dụng , Tổ chức code	
+	+ withRouter
+	+ connect (redux): Được sử dụng trong Redux để kết nối các component với store Redux. HOC này giúp component có thể truy 
+cập và sử dụng các state và action creators từ store Redux mà không cần truyền qua props
+	+ React.memo *
+	+ withAuth
+	+ withTheme
+ 
+-Lifecycle của react : chu trình mà các component trong React trải qua trong quá trình render và hiển thị trên trình duyệt
+	Lifecycle của React được chia thành 3 phần chính:
+	+Mounting: Tạo ra một instance của component và đưa nó vào trong DOM. ( khởi tạo )
+	+Updating: Cập nhật lại instance của component với các props mới hoặc state mới.( cập nhập )
+	+Unmounting: Xoá bỏ instance của component khỏi DOM. ( hủy )
+
+- Khi thay đổi state,component render lại, có cách nào để khi thay đổi state mà component ko cần render lai ko?
+	+dùng shouldComponentUpdate => return false
+
+- Sử dụng react hook thì làm sao để quản lý render?
+	+thể sử dụng hook React.memo : render lại chỉ khi các props của nó thay đổi
+-.PureComponent và memo dùng để làm gì?
+	+Để ngăn việc re-render không cần thiết.
+	+PureComponent :kế thừa từ PureComponent, bạn cần import PureComponent từ thư viện React
+
+
+- JSX là gì
+	+JSX là một phần mở rộng cú pháp cho JavaScript. Bằng cách sử dụng JSX, chúng ta có thể viết các cấu trúc HTML
+	 trong cùng một tệp chứa code JavaScript.
+
+- component trong React có 2 loại
+	+ Functional Components : 
+		. ko có trạng thái (state) riêng  chúng và chỉ chứa các phương thức render ( như useState )
+		. không sử dụng các phương thức lifecycle 
+		. có thể lấy dữ liệu từ các components khác làm props
+	+ Class Components:
+		. cho phép sử dụng trạng thái (state) và các phương thức lifecycle để quản lý logic và tương tác với React.
+	=>  Class Components phức tạp hơn có thể tái sử dụng
+
+
+Một số cách để tối ưu ứng dụng reactjs
+=> Sử dụng useCallBack, memo, useMemo để ngăn việc re-render không đáng có.
+=> Tối ưu dung lượng ảnh, hạn chế sử dụng svg.
+=> sử dụng lazyload.
+=> npm run build => build production
+ 
+
+-------------------------------------------------- ------------------------- 
+- Các lệnh git cơ bản :
+	+ git init: Khởi tạo một kho lưu trữ Git mới tại thư mục hiện tại
+	+ git clone: Sao chép một kho lưu trữ Git từ một địa chỉ URL.
+	+ git add: Thêm tập tin hoặc thư mục để theo dõi thay đổi trong kho lưu trữ.
+	+ git commit: Lưu trữ một bản của tập tin và thông tin về bản của nó vào kho lưu trữ.
+	+ git push: Đẩy các commit đã được lưu trữ lên một kho lưu trữ từ xa.
+	+ git branch: Tạo nhanh
+	+ git checkout: Chuyển đổi đến nhánh
+	
+- sessionStorage : tương tự localStorage nhưng mỗi khi đóng trình duyệt hoạt tab dữ liệu sẽ bị xóa. Không đc gửi lên server
+	+ sessionStorage.setItem(key, value): Lưu trữ một giá trị với khóa cho trong 
+	+ sessionStorage.getItem(key): Lấy một giá trị được lưu trữ trong sessionStorage với khóa cho trước.
+	+ sessionStorage.removeItem(key): Xóa một giá trị được lưu trữ trong sessionStorage với khóa cho trước.
+	+ sessionStorage.clear(): Xóa tất cả các giá trị được lưu trữ trong sessionStorage.
+- Cookies :sử dụng các thư viện như js-cookie hoặc universal-cookie 
+	+ Thông tin được gửi lên server ( chủ yếu đọc ở mấy chủ , localStorage và sessionStorage chỉ đọc ở máy khách)
+	+ Có thời gian sống do lập trình viên xác định 
+	* Thuộc tính
+		+ Cookies.get('key'); : lấy giá trị
+		+ Cookies.set('key', 'value', { expires: 7 }); :  Lưu trữ một giá trị vào cookies trong 7 ngày
+		+ Cookies.set('key', 'value', { path: '/' });  :  Lưu trữ một giá trị vào cookies trên toàn bộ trang web
+		+ Cookies.set('key', 'value', { domain: 'example.com' }); :Lưu trữ một giá trị vào cookies trên toàn bộ tên miền
+		+ Cookies.set('key', 'value', { secure: true });: Lưu trữ một giá trị vào cookies qua kết nối an toàn (https)
+		+ thêm credentials: 'include'  vào fetch để gửi dữ liệu lên máy chủ,
+- localStorage và sessionStorage là các công cụ lưu trữ trong trình duyệt cho phép bạn lưu trữ dữ liệu cục bộ trong 
+trình duyệt của người dùng. Có thể được đọc bởi bất kỳ trang web nào truy cập trong cùng một tên miền.
+- cookies là một tập tin nhỏ được lưu trữ trên máy tính của người dùng bởi trình duyệt và có thể được gửi lên máy chủ 
+khi người dùng truy cập một trang web.
+- Thông tin lưu trữ : LocalStorage > SeesionStorage > Cookies
+
+- Khắc phục component re-render 2 lần khi sử dụng useEffect 
+	+ React.memo() : chỉ re-render khi props thay đổi
+	const MyComponent = React.memo(function MyComponent(props) {
+  		// component implementation
+	});
+
+------------------------------------------------ NextJs ------------------------------------------------ 
+
+*SSG, SSR, CSR and ISR
+	- SSG : Static site Gennaration ( hay dùng )
+		+ Tạo và lữu trữ HTMl và data ở dạng tĩnh -> client gọi thì trả về
+		- getStaticProps 	
+			+ consolog ở server-site
+			+ run lúc build-time
+			+ run lúc build-time
+		- getStaticPaths
+			+ giống getStaticProps nhưng khác có ds đường dẫn và mún tạo trang tĩnh cho mỗi đường dẫn đó
+
+	- SSR : Server site Rendering
+		+ Trả về HTMl mỗi khi client yêu cầu
+		- getServerSideProps
+
+		=> SSG dùng khi data k có sự thay đổi thường xuyên cập nhập 1 cách định kỳ , yêu cầu tốc độ tải nhanh , SEO mạnh
+
+	- CSR : Client-Side Rendering ( react thông thường giống create-react-app )
+		+ HTMl tải xong thì thực hiện ( chạy ở client )
+	
+	- ISR : Incremental Static Regeneration
+
+    Pre-rendering : render sẵn html bên server -> user get html về xong load js(nextJS)
+    No pre-rendering: chưa có gì hết -> load js lên -> render trở về (create-react-app)
+
+
+------------------------ Nodejs
+- Đối tượng ( object ) chứa các thuộc tính và hành vi -> Đối tượng là thể hiện của một lớp 
+	VD con chó là 1 đối tượng thì thuộc tính là tên , giống , màu săc,.. Còn hành vì là ăn, sủa, chạy,...
+- Class được xem như là một khuôn mẫu của đối tượng  chứa các kiểu dữ liệu và phương thức của đối tượng -> khuôn mẫu để thiết kế ra các đối tượng
+- Phạm vi
+	Private : truy cập bên trong class
+	Default : Private + truy cập bên trong package
+	Protected : Default + truy cập ngoài package bởi class con
+	public : protected + bên ngoài class và k thuộc class con
+- Overloading (nạp chồng phương thức) : cùng tên nhưng khác đối số, kiểu dữ liệu
+- Overriding (ghì đè phương thức )    : khai báo lại method ở lớp con mà có sẵn ở lớp cha
+
+-4 tinh chất của đối tượng?
+	=> Đóng gói: Encapsulation
+		+ Bảo về dữ liệu, bảo mật
+	=> Kế thừa: Inheritance
+		+Tái sử dụng
+		+1 class có kế thừa 1 class nhưng kết thừa được nhiều interface
+	=> Đa hình: Polymorphism
+		+Overloading, overwriting
+	=> Trừu tượng: Abstraction
+		+Abstract class và interface
+- JWT in Nodejs  : SON Web Token (JWT) là một tiêu chuẩn định dạng cho việc truyền thông thông tin mã hóa qua mạng.
+	* Authentication ( xác thực )
+	* Authorization ( ủy quyền )
+		+jwt.sign(payload,secret,moptions)
+			`~secret: là mã bí mật dùng để mã hóa và giải mã JWT. Nó phải được bảo mật và không được chia sẻ với bất kỳ ai.
+- Express : là một framework nodejs dùng xây dưng ứng dụng web và api
+	+ cung cấp APi đơn giản
+	+ mô hình middleware cho phép xử lý trước khi chuyển tới các roter tiếp theo
+
+8-12 
+13h30 -5h30
+
+
+LƯỢM NHẶT CỦA 1 BẠN TRONG GROUP
+1: Phân biệt props, state là gì. có thay đổi giá trị của props được không nếu được thì làm như nào.
+2: SetState là hàm đồng bộ hay bất đồng bộ. Sẽ như nào nếu hàm này là hàm đồng bộ. ( * )
+3: DOM ảo là gì, quá trình render, re-render được thực hiện như thế nào.
+4: Em code chủ yếu là function component hay class component. Điểm khác nhau giữa 2 thằng
+5: Em hãy trình bày về Lifecycle: tùy theo mình đang làm việc với react version bao nhiêu mà trình bày ở đây mình làm việc với version < 16.3 nên trình bày lifecycle cũ. Còn nếu xài từ 16.3 trở lên thì có thể trình bày theo lifecycle mới + nói thêm 1 chút về lifecycle cũ.
+6: componentwillreceiveprops được sử dụng trong trường hợp nào.
+7: shoudcomponentupdate được sử dụng trong trường hợp nào return true/false có ý nghĩa gì.
+8: Trước khi có version 16.8.0 code function component được sử dụng để làm gì.
+9: Trong function component(hooks) lifecycle được viết ở đâu. Có nhưng loại nào.
+10: Tại sao team Reacr lại viết chung 3 lifecycle vào trong useEffect mà không tách riêng ra.
+11: Giải thích ý nghĩa của từng Dependency trong useEffect.
+12: Ngoài useEffect ra em còn biết về các hooks nào khác không, em đã custom 1 hooks nào chưa.
+13: HOC là gì.
+14: Promise, callback, async/await là gì.
+15: Trình bày về lý do khi nào nên sử dụng redux.
+16: Ngoài redux ra còn có cách nào để share dữ liệu không.
+18: Em thường làm việc với các middleware nào.
+19: Em có biết redux-thunk không.
+20: Em biết Sass không.
+21: Quy tắc đặt tên BEM.
+22: Ngoài ra em có biết thêm về thư viện hỗ trợ việc css hay xây dựng UI nào không(tailwind,....)
+23: Em biết TypeScript không.
+24: Em có biết về thư viện hay framework nào hỗ trợ server-side-rendering không ?
+25: Theo em ReactJS là CSR hay SSR.
+26. UseMemo() là gì ?
+27. useRef() là gì ?
+28. useReducer() là gì ?
+			
