@@ -36,18 +36,22 @@ export default function LoginPage() {
                 password,
             };
 
-            dispatch(login(formData));
-            const receivedToken = dispatch?.data?.jwt;
+            await dispatch(login(formData));
 
-            localStorage.setItem('token', receivedToken);
             localStorage.setItem('user', JSON.stringify(formData));
             if (auth?.user?.role === 'admin') {
-                navigate('/admin');
+                toast.success('Đang vào trang admin');
+                setTimeout(() => {
+                    navigate('/admin');
+                }, 2000);
             } else if (auth?.user?.role === 'user') {
-                navigate('/');
+                toast.success('Đang vào trang chủ');
+                setTimeout(() => {
+                    navigate('/');
+                }, 2000);
             }
         } catch (error) {
-            // toast.error(error?.message);
+            toast.error(error?.message);
         }
     };
     return (

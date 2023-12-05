@@ -11,17 +11,12 @@ export default function CartHistory() {
     console.log(products);
     const handleBuyNow = async () => {
         try {
-            const orderInfo = {
-                productName: 'ExampleProduct',
-                // Bất kỳ thông tin thanh toán nào khác mà bạn cần thêm vào đây
-            };
-
-            const response = await apiBuyNow.postBuyNow(orderInfo);
+            const response = await apiBuyNow.postBuyNow();
             console.log(response.data);
             if (response) {
                 console.log('Đang chuyển sang trang thanh toán');
-                const externalURL = response.data; // Đảm bảo response.data chứa URL đầy đủ
-                window.location.href = externalURL;
+                // const externalURL = response.data; // Đảm bảo response.data chứa URL đầy đủ
+                // window.location.href = externalURL;
             } else {
                 console.error('Có lỗi khi thêm thanh toán ');
             }
@@ -60,6 +55,7 @@ export default function CartHistory() {
                     })}
             </div>
             <div className="payment">
+                <span>Tổng số tiền cần thanh toán là: {products?.totalDiscountedPrice}</span>
                 <div className="payment-btn">
                     <Button text="Buy Now" onClick={handleBuyNow} className={'payment-btn-buy'}></Button>
                 </div>

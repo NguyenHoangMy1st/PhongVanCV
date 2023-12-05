@@ -9,7 +9,7 @@ export default function CartCard({ product, onIncreaseQuantity, onDeCreaseQuanti
     // console.log(quantityNew);
     // console.log(quantityDefault);
     const hexColorCode = product?.product.color;
-    const colorName = chroma(hexColorCode).name();
+    const color = chroma(hexColorCode).css();
     // console.log(product);
     // useEffect(() => {
     //   onIncreaseQuantity(price, quantity);
@@ -57,9 +57,9 @@ export default function CartCard({ product, onIncreaseQuantity, onDeCreaseQuanti
                             {product?.product?.brand?.name}
                         </Link>
                         <div className="cartList-content-color">
-                            <span className="cartList-content-color-p">
-                                Color: {colorName} Size: {product?.size}
-                            </span>
+                            <span>Color</span>
+                            <div className="color-display" style={{ backgroundColor: color }}></div>
+                            <span className="cartList-content-color-p">Size: {product?.size}</span>
                         </div>
                     </div>
                 </div>
@@ -85,8 +85,18 @@ export default function CartCard({ product, onIncreaseQuantity, onDeCreaseQuanti
                     </span>
                 </div>
                 <div className="cartList-operation">
-                    <Button onClick={handleDelete}>Delete</Button>
-                    <Button onClick={handleUpdate}>Update</Button>
+                    <Button
+                        style={{ backgroundColor: 'transparent', color: '#000', borderColor: 'transparent' }}
+                        onClick={handleDelete}
+                    >
+                        Delete
+                    </Button>
+                    <Button
+                        style={{ backgroundColor: 'transparent', color: '#000', borderColor: 'transparent' }}
+                        onClick={handleUpdate}
+                    >
+                        Update
+                    </Button>
                 </div>
             </div>
         </>
