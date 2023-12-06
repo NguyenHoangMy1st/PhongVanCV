@@ -18,6 +18,7 @@ import ProfilePage from './pages/ProfilePage';
 import HotTrendPage from './pages/HotTrendPage';
 
 import 'react-toastify/dist/ReactToastify.css';
+import OrderPage from './pages/OrderPage';
 
 function App() {
     return (
@@ -36,6 +37,7 @@ function App() {
                             <Route path="/cart" element={<CartPage />} />
                             <Route path="/service" element={<ServicePage />} />
                             <Route path="/pay" element={<PayPage />} />
+                            <Route path="/order" element={<OrderPage />} />
                             <Route path="/profile" element={<ProfilePage />} />
                             {publicRoutes.map((route, index) => {
                                 const Page = route.component;

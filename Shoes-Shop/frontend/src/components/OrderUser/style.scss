@@ -11,17 +11,16 @@
     border-collapse: collapse;
 }
 
-.custom-header-order {
-    font-size: 1.6rem !important;
-    font-weight: 500 !important;
+.custom-header-order-user {
+    font-size: 18px !important;
+    font-weight: 600 !important;
     font-family: Poppins, sans-serif !important;
-    color: var(--white) !important;
 }
 
 .custom-cell {
 }
-.custom-cell-order {
-    font-size: 1.2rem !important;
+.custom-cell-order-user {
+    font-size: 18px !important;
 
     font-weight: 300 !important;
     color: var(--main-text) !important;

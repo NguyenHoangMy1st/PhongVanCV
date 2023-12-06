@@ -6,14 +6,26 @@ import { toast } from 'react-toastify';
 import { useSearchParams } from 'react-router-dom';
 import apiBrand from '../API/apiBrand';
 import apiFilterPrice from '../API/apiFilterPrice';
+import apiGuestProduct from '../API/apiGuestProduct';
 
 export default function ProductGridList() {
+    const [isLoggedIn, setIsLoggedIn] = useState(true);
     const [products, setProducts] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     let [searchParams, setSearchParams] = useSearchParams();
     const selectedBrand = searchParams.get('brand');
     const [sortCriteria, setSortCriteria] = useState(null);
     const [sortOrder, setSortOrder] = useState('desc');
+
+    useEffect(() => {
+        const checkLoginStatus = () => {
+            const access_token = localStorage.getItem('jwt');
+            setIsLoggedIn(!!access_token);
+        };
+
+        checkLoginStatus();
+    }, []);
+
     const fetchData = useCallback(async () => {
         try {
             setIsLoading(true);
@@ -21,8 +33,11 @@ export default function ProductGridList() {
 
             if (selectedBrand) {
                 response = await apiBrand.getProductByBrand(selectedBrand);
+                setProducts(response?.data?.content);
             } else {
-                response = await apiProductGrid.getAllProduct();
+                // Chọn API dựa trên trạng thái đăng nhập
+                response = await apiGuestProduct.getAllProduct();
+                setProducts(response.data);
             }
 
             // Sorting logic
@@ -35,10 +50,8 @@ export default function ProductGridList() {
                     }
                 });
             }
-
-            setProducts(response.data.content);
         } catch (error) {
-            toast.error(error?.message);
+            // toast.error(error?.message);
         } finally {
             setIsLoading(false);
         }
@@ -77,6 +90,7 @@ export default function ProductGridList() {
                     // Nếu là sắp xếp mặc định, gọi API để lấy tất cả sản phẩm
                     const response = await apiProductGrid.getAllProduct();
                     setProducts(response.data.content);
+                    console.log(response);
                 }
             } catch (error) {
                 toast.error(error?.message);

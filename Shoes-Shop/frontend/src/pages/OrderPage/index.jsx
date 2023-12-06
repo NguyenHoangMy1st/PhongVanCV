@@ -1,32 +1,31 @@
-import Header from '../../components/Layout/Header';
-import CartList from '../../components/CartList';
-import { useCart } from '../../contexts/CartContext';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { toast } from 'react-toastify';
+import OrderUser from '~/components/OrderUser/OrdersTable';
+import Header from '../../components/Layout/Header';
+import PayCard from '../../components/PayCard';
+import { useCart } from '../../contexts/CartContext';
 
-export default function CartPage() {
-    const { cartItems } = useCart();
-
+export default function OrderPage() {
     useEffect(() => {
         const checkAuthentication = () => {
-            // Kiểm tra nếu có token, user, jwt
+            // Kiểm tra nếu không có token, user, jwt
             const token = localStorage.getItem('jwt');
             const user = localStorage.getItem('user');
             const jwt = localStorage.getItem('jwt');
 
             if (!token || !user || !jwt) {
                 // Hiển thị toast.error và chuyển hướng đến trang đăng nhập
-                toast.error('Bạn cần đăng nhập để xem giỏ hàng');
+                toast.error('Bạn cần đăng nhập để truy cập trang này');
             }
         };
-
         checkAuthentication();
     }, []);
 
+    const { cartItems } = useCart();
     return (
         <>
             <Header cartItems={cartItems} />
-            <CartList />
+            <OrderUser />
         </>
     );
 }

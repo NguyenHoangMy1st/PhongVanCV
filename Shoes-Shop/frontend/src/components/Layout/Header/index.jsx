@@ -6,7 +6,6 @@ import logo2 from '../../../images/logo2png.png';
 import apiCart from '../../API/apiCart';
 
 export default function Header({ cartItems = [] }) {
-    console.log('cartItems', cartItems);
     const cartItemCount = cartItems?.length || 0;
     const dropdownRef = useRef(null);
     const [active, setActive] = useState(false);
@@ -38,25 +37,6 @@ export default function Header({ cartItems = [] }) {
         };
     }, []);
 
-    // useEffect(() => {
-    //   // Mô phỏng một cuộc gọi API để lấy số lượng sản phẩm trong giỏ hàng
-    //   // Thay thế đoạn này bằng cuộc gọi API thực tế của bạn để lấy số lượng
-    //   const fetchCartCount = async () => {
-    //     try {
-    //       // Giả lập việc lấy dữ liệu từ API
-    //       const response = await apiCart.getAllCart();
-    //       const data = await response.json();
-    //       setCartCount(data.count); // Giả sử API trả về có trường 'count'
-    //     } catch (error) {
-    //       console.error("Lỗi khi lấy số lượng sản phẩm trong giỏ hàng:", error);
-    //     }
-    //   };
-
-    //   // Gọi API để lấy số lượng sản phẩm trong giỏ hàng khi component được mount
-    //   fetchCartCount();
-
-    //   // ... (mã trước đó)
-    // }, []);
     return (
         <header className="header">
             <div className="header-main">
@@ -77,6 +57,9 @@ export default function Header({ cartItems = [] }) {
                         <Link to="/cart" className="action-btn">
                             <i className="fa fa-shopping-cart" aria-hidden="true"></i>
                             <span className="count">{cartItemCount}</span>
+                        </Link>
+                        <Link to="/order" className="action-btn">
+                            <i className="fa fa-history" aria-hidden="true"></i>
                         </Link>
                     </div>
                 </div>

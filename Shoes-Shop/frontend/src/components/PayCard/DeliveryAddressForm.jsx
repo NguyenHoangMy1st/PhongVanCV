@@ -45,8 +45,8 @@ export default function DeliveryAddressForm() {
                 toast.error('Có lỗi khi thêm thông tin');
             }
         } catch (error) {
-            console.error('Lỗi khi thực hiện yêu cầu API:', error);
-            toast.error(`Có lỗi khi thực hiện yêu cầu API: ${error.message}`);
+            // console.error('Lỗi khi thực hiện yêu cầu API:', error);
+            // toast.error(`Có lỗi khi thực hiện yêu cầu API: ${error.message}`);
         }
     };
     return (

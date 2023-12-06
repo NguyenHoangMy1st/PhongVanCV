@@ -8,6 +8,7 @@ import 'swiper/css/navigation';
 import { Pagination, Navigation, Mousewheel, Keyboard } from 'swiper/modules';
 import './style.scss';
 import apiProductGrid from '../API/apiProductGrid';
+import apiGuestProduct from '../API/apiGuestProduct';
 
 const breakpointsSwiper = {
     320: {
@@ -40,7 +41,6 @@ export default function BrandList() {
                 setBrands(uniqueBrands);
                 setIsLoading(false);
             } catch (error) {
-                console.error('Error fetching data:', error);
                 setIsLoading(false);
             }
         };
@@ -51,7 +51,6 @@ export default function BrandList() {
     const filterUniqueBrands = (brands) => {
         const uniqueBrandNames = new Set();
         const uniqueBrands = [];
-
         brands.forEach((brand) => {
             const brandName = brand?.brand?.name;
 

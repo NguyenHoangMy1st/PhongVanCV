@@ -33,7 +33,6 @@ export default function AboutPage({ quantity = 1 }) {
             size: selectedSize,
             color: selectedColor,
         };
-        console.log(formData);
         try {
             setIsLoading(true); // Bắt đầu loading
 
@@ -46,7 +45,7 @@ export default function AboutPage({ quantity = 1 }) {
             console.log(response);
         } catch (error) {
             console.error('Add to Cart Error:', error);
-            toast.error(error?.message);
+            toast.error('Bạn cần đăng nhập mới được sử dụng chức năng này');
         } finally {
             setIsLoading(false); // Kết thúc loading, không phụ thuộc vào thành công hay thất bại
         }
@@ -60,8 +59,8 @@ export default function AboutPage({ quantity = 1 }) {
                 const response = await apiProductDetail.getProductDetail(id);
                 setProductDetail(response.data);
             } catch (error) {
-                console.error('Error fetching product detail:', error);
-                toast.error('Error fetching product detail');
+                // console.error('Error fetching product detail:', error);
+                // toast.error('Error fetching product detail');
             } finally {
                 setIsLoading(false); // Kết thúc loading, không phụ thuộc vào thành công hay thất bại
             }

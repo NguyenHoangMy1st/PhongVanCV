@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import Button from '~/pages/Button';
 import apiProfile from '../API/apiProfile';
 import './style.scss';
@@ -23,7 +23,7 @@ export default function ProfileCard() {
                     setDefaultAddress(response.data.addresses[0]);
                 }
             } catch (error) {
-                toast.error(error?.message);
+                toast.error('Bạn cần đăng nhập để xem thông tin này');
             }
         };
         // Call the fetchProductGrid function
@@ -92,6 +92,7 @@ export default function ProfileCard() {
     };
     return (
         <section>
+            <ToastContainer />
             <div className="profile container-layout">
                 <h1 className="profile-title">Profile information</h1>
                 <div className="profile-content">

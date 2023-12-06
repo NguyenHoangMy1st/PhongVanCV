@@ -24,7 +24,7 @@ export default function AddressList() {
                     setDefaultAddress(response.data.addresses[0]);
                 }
             } catch (error) {
-                toast.error(error?.message);
+                // toast.error(error?.message);
             }
         };
         // Call the fetchProductGrid function

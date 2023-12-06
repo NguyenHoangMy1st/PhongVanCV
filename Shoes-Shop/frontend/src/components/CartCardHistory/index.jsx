@@ -20,7 +20,7 @@ export default function CartCardHistory({
     // useEffect(() => {
     //   onIncreaseQuantity(price, quantity);
     // }, []);
-
+    console.log(product);
     return (
         <>
             <div className="cartList-history" role="list">
@@ -46,16 +46,18 @@ export default function CartCardHistory({
                     </div>
                 </div>
                 <div className="cartList-price">
-                    <span className="font-15">{product?.discountedPrice + ' '}VND</span>
+                    <span className="font-15">{product?.product.discountedPrice + ' '}VND</span>
                 </div>
                 <div className="cartList-priceSale">
-                    <span className="font-15">{product?.price + ' '}VND</span>
+                    <span className="font-15">{product?.product.price + ' '}VND</span>
                 </div>
                 <div className="cartHistory-Quantity">
                     <input type="number" className="cartHistory-input" value={quantityDefault} />
                 </div>
                 <div className="cartList-money">
-                    <span className="font-15">{quantityDefault * Number(product.discountedPrice) + ' '}VND</span>
+                    <span className="font-15">
+                        {quantityDefault * Number(product.product.discountedPrice) + ' '}VND
+                    </span>
                 </div>
             </div>
         </>

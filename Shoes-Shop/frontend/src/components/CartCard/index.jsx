@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './style.scss';
-export default function CartCard({ product, onIncreaseQuantity, onDeCreaseQuantity, onDelete, onUpdate }) {
+export default function CartCard({ product, onIncreaseQuantity, onDeCreaseQuantity, onDelete }) {
     const [quantityDefault, setQuantityDefault] = useState(product?.quantity);
     const [newQuantity, setNewQuantity] = useState(product.quantity);
     // console.log(quantityNew);
@@ -32,11 +32,6 @@ export default function CartCard({ product, onIncreaseQuantity, onDeCreaseQuanti
     };
     const handleDelete = () => {
         onDelete();
-    };
-    const handleUpdate = () => {
-        // Use quantityNew here for the updated value
-        onUpdate();
-        // console.log("Updated Quantity:", quantityNew);
     };
     console.log(product);
     return (
@@ -90,12 +85,6 @@ export default function CartCard({ product, onIncreaseQuantity, onDeCreaseQuanti
                         onClick={handleDelete}
                     >
                         Delete
-                    </Button>
-                    <Button
-                        style={{ backgroundColor: 'transparent', color: '#000', borderColor: 'transparent' }}
-                        onClick={handleUpdate}
-                    >
-                        Update
                     </Button>
                 </div>
             </div>

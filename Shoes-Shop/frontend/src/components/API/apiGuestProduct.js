@@ -1,10 +1,10 @@
 import axiosClient from './axiosClient';
 import axiosClientGuest from './axiosClientGuest';
 
-const apiProductDetail = {
-    getProductDetail(id) {
-        const url = `/guest/products/id/${id}`;
+const apiGuestProduct = {
+    getAllProduct() {
+        const url = '/guest/products/';
         return axiosClientGuest.get(url);
     },
 };
-export default apiProductDetail;
+export default apiGuestProduct;

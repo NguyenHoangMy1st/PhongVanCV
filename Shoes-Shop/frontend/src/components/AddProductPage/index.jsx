@@ -108,8 +108,8 @@ export default function AddProductPage() {
                         toast.error('Có lỗi khi thêm sản phẩm');
                     }
                 } catch (error) {
-                    toast.error('Lỗi khi thực hiện yêu cầu API:', error);
-                    toast.error(`Có lỗi khi thực hiện yêu cầu API: ${error.message}`);
+                    // toast.error('Lỗi khi thực hiện yêu cầu API:', error);
+                    // toast.error(`Có lỗi khi thực hiện yêu cầu API: ${error.message}`);
                 }
             } else {
                 toast.error('Giá của sản phẩm bạn đã nhập sai');

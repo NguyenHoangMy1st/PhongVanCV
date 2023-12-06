@@ -18,7 +18,7 @@ export default function CartList() {
             const response = await apiCart.getAllCart();
             setProducts(response.data);
         } catch (error) {
-            toast.error(error?.message);
+            // toast.error(error?.message);
         }
     };
 
@@ -28,21 +28,37 @@ export default function CartList() {
         fetchCarts();
     }, []);
 
-    const handleQuantityChange = (productId, newQuantity) => {};
-
-    const handleQuantity = (productId, changeAmount) => {
-        const product = products.cartItems.find((p) => p.id === productId);
-        const currentQuantity = product ? product.quantity : 0;
-        const newQuantity = Math.max(currentQuantity + changeAmount, 1);
-        handleQuantityChange(productId, newQuantity);
+    const handleQuantityChange = async (productId, newQuantity) => {
+        console.log(newQuantity);
+        const formData = {
+            quantity: newQuantity,
+        };
+        try {
+            const response = await apiUpdateCartItems.putUpdateCartItems(productId, formData);
+            if (response) {
+                toast.success('Bạn tăng số lượng sản phẩm lên 1');
+            } else {
+                // toast.error('Update quantity failed');
+            }
+        } catch (error) {
+            // toast.error(error.message);
+        }
     };
 
     const handleIncreaseQuantity = (productId) => {
-        handleQuantity(productId, 1);
+        const product = products.cartItems.find((p) => p.id === productId);
+        const currentQuantity = product ? product.quantity : 0;
+        const newQuantity = currentQuantity + 1;
+        handleQuantityChange(productId, newQuantity);
+        fetchCarts();
     };
 
     const handleDecreaseQuantity = (productId) => {
-        handleQuantity(productId, -1);
+        const product = products.cartItems.find((p) => p.id === productId);
+        const currentQuantity = product ? product.quantity : 0;
+        const newQuantity = currentQuantity - 1;
+        handleQuantityChange(productId, newQuantity);
+        fetchCarts();
     };
 
     const handleDeleteProduct = async (productId) => {
@@ -52,7 +68,7 @@ export default function CartList() {
                 fetchCarts();
                 toast.success('Xóa sản phẩm thành công');
             } else {
-                toast.error('Xóa sản phẩm thất bại');
+                // toast.error('Xóa sản phẩm thất bại');
             }
         } catch (error) {
             toast.error(error.message);
@@ -68,29 +84,13 @@ export default function CartList() {
 
             // After all items are deleted, update the state
             dispatch(setProducts({ ...products, cartItems: [] }));
-
+            window.location.reload();
             toast.success('Xóa tất cả sản phẩm thành công');
         } catch (error) {
-            toast.error('Có lỗi khi xóa tất cả sản phẩm');
+            toast.error('Đã xóa tất cả sản phẩm');
         }
     };
 
-    const handleUpdateProduct = async (productId, newQuantity) => {
-        const formData = {
-            quantity: newQuantity,
-        };
-        console.log(newQuantity);
-        try {
-            const response = await apiUpdateCartItems.putUpdateCartItems(productId, formData);
-            if (response) {
-                toast.success('Update quantity successful');
-            } else {
-                toast.error('Update quantity failed');
-            }
-        } catch (error) {
-            toast.error(error.message);
-        }
-    };
     return (
         <>
             <div className="cart container-layout">
@@ -117,7 +117,6 @@ export default function CartList() {
                                 key={product?.id}
                                 product={product}
                                 onDelete={() => handleDeleteProduct(product.id)}
-                                onUpdate={() => handleUpdateProduct(product.id)}
                                 onIncreaseQuantity={() => handleIncreaseQuantity(product.id)}
                                 onDeCreaseQuantity={() => handleDecreaseQuantity(product.id)}
                             />
@@ -141,11 +140,7 @@ export default function CartList() {
                     </div>
                 </div>
                 <div className="payment-btn">
-                    <Button
-                        text="Buy Now"
-                        to="/pay?step=1"
-                        className={'payment-btn-buy'}
-                    >
+                    <Button text="Buy Now" to="/pay?step=1" className={'payment-btn-buy'}>
                         Buy Now
                     </Button>
                 </div>

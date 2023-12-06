@@ -51,7 +51,7 @@ export default function LoginPage() {
                 }, 2000);
             }
         } catch (error) {
-            toast.error(error?.message);
+            // toast.error(error?.message);
         }
     };
     return (
@@ -59,7 +59,7 @@ export default function LoginPage() {
             <ToastContainer />
             <div className={cx('wrapper')}>
                 <div className={cx('form-box login')}>
-                    <h1>Welcome Back!</h1>
+                    <h1 className={cx('form-box-title')}>Welcome Back!</h1>
                     <form id="login-form">
                         <div className={cx('input-box')}>
                             <input
