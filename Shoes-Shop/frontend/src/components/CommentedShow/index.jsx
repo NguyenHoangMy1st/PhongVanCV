@@ -10,12 +10,16 @@ import { toast } from 'react-toastify';
 import apiReviewDetail from '../API/apiReviewDetail';
 import { Keyboard, Mousewheel, Navigation } from 'swiper/modules';
 
-export default function CommentedShow() {
+export default function CommentedShow({ onAmountRatingChange }) {
     const image =
         'https://png.pngtree.com/element_our/20200611/ourlarge/pngtree-doggie-cute-cheap-expression-pack-avatar-image_2251655.jpg';
 
     const [product, setProduct] = useState();
     const [reviews, setReviews] = useState([]);
+    const targetRating = 5;
+    const filteredReviews = reviews.filter((item) => item.rating === targetRating);
+
+    // console.log(`Số lượng đánh giá có rating ${targetRating}: ${amountRating}`);
     const [isLoading, setIsLoading] = useState(true); // Thêm isLoading vào đây
     let id = useParams();
     useEffect(() => {
@@ -35,8 +39,12 @@ export default function CommentedShow() {
             try {
                 setIsLoading(true); // Bắt đầu loading
                 const response2 = await apiReviewDetail.getReviewDetail(id);
-
                 setReviews(response2?.data);
+                console.log(response2.data);
+                if (onAmountRatingChange) {
+                    const newAmountRating = filteredReviews.length;
+                    onAmountRatingChange(newAmountRating);
+                }
             } catch (error) {
                 // console.error("Error fetching product detail:", error);
                 // toast.error("Error fetching product detail");
@@ -46,7 +54,7 @@ export default function CommentedShow() {
         };
 
         fetchReviewDetail();
-    }, [id]);
+    }, [id, onAmountRatingChange, filteredReviews.length]);
 
     return (
         <div>
@@ -84,15 +92,13 @@ export default function CommentedShow() {
                                                 {review?.user?.firstName} {review?.user?.lastName}
                                             </strong>
                                             <div className="likes">
-                                                <i className="fa fa-solid fa-star fa-2xl icon-star"></i>
-                                                <i className="fa fa-solid fa-star fa-2xl icon-star"></i>
-                                                <i className="fa fa-solid fa-star fa-2xl icon-star"></i>
-                                                <i className="fa fa-solid fa-star fa-2xl icon-star"></i>
-                                                <i className="fa fa-solid fa-star fa-2xl icon-star"></i>
+                                                {[...Array(review?.rating)].map((_, index) => (
+                                                    <i key={index} className="fa fa-solid fa-star fa-2xl icon-star"></i>
+                                                ))}
                                             </div>
                                         </div>
                                         <div className="comment-date">
-                                            <span>October 6, 2023</span>
+                                            <span>{new Date(review.createAt).toLocaleString()}</span>
                                         </div>
                                     </div>
                                 </div>

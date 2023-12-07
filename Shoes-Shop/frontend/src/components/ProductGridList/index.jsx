@@ -39,10 +39,9 @@ export default function ProductGridList() {
                 response = await apiGuestProduct.getAllProduct();
                 setProducts(response.data);
             }
-
             // Sorting logic
             if (sortCriteria) {
-                response.data.content.sort((a, b) => {
+                response.data.sort((a, b) => {
                     if (sortOrder === 'asc') {
                         return a[sortCriteria] - b[sortCriteria];
                     } else {
@@ -90,10 +89,9 @@ export default function ProductGridList() {
                     // Nếu là sắp xếp mặc định, gọi API để lấy tất cả sản phẩm
                     const response = await apiProductGrid.getAllProduct();
                     setProducts(response.data.content);
-                    console.log(response);
                 }
             } catch (error) {
-                toast.error(error?.message);
+                // toast.error(error?.message);
             } finally {
                 setIsLoading(false);
             }

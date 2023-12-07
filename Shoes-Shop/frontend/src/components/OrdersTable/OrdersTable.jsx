@@ -9,6 +9,7 @@ import { toast } from 'react-toastify';
 
 export default function OrdersTable() {
     const [orders, setOrders] = useState([]);
+    console.log(orders);
     const [selectedStatus, setSelectedStatus] = useState();
     const [selectedOrderIds, setSelectedOrderIds] = useState([]);
     const [localStatus, setLocalStatus] = useState({});
@@ -114,10 +115,10 @@ export default function OrdersTable() {
                                     {order.user.email}
                                 </TableCell>
                                 <TableCell align="left" className="custom-cell-order">
-                                    {order.shippingAddress.streetAddress}
+                                    {order?.shippingAddress?.streetAddress}
                                 </TableCell>
                                 <TableCell align="left" className="custom-cell-order">
-                                    {order.deliveryDate}
+                                    {new Date(order.deliveryDate).toLocaleString()}
                                 </TableCell>
                                 <TableCell align="left" className="custom-cell-order">
                                     {order.totalDiscountedPrice} VND

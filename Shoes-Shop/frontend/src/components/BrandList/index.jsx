@@ -35,8 +35,8 @@ export default function BrandList() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await apiProductGrid.getAllProduct();
-                const uniqueBrands = filterUniqueBrands(response.data.content);
+                const response = await apiGuestProduct.getAllProduct();
+                const uniqueBrands = filterUniqueBrands(response.data);
 
                 setBrands(uniqueBrands);
                 setIsLoading(false);

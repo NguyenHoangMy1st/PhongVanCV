@@ -7,7 +7,7 @@ import apiCreateReview from '../API/apiReview';
 import Raiting from '../API/Raiting';
 import './style.scss';
 
-export default function CommentCard(productId) {
+export default function CommentCard({ productId, onAmountRatingChange }) {
     const [value, setValue] = useState(0);
     const [reviewText, setReviewText] = useState('');
     const postCreateRaiting = async () => {
@@ -37,6 +37,13 @@ export default function CommentCard(productId) {
             console.error('Error submitting review:', error);
         }
     };
+
+    const calculateTotalReviews = () => {
+        // Calculate the total number of 5-star reviews
+        const totalReviews = onAmountRatingChange || 0;
+
+        return totalReviews;
+    };
     return (
         <section>
             <div className="container-layout">
@@ -57,7 +64,7 @@ export default function CommentCard(productId) {
                                     <i className="fa fa-solid fa-star fa-2xl icon-star"></i>
                                     <i className="fa fa-solid fa-star fa-2xl icon-star"></i>
                                 </div>
-                                <div className="ratingHeader-reviews">2 Reviews</div>
+                                <div className="ratingHeader-reviews">{calculateTotalReviews()} Reviews</div>
                             </div>
                             <div className="rating-main">
                                 <div className="rating-five rating-items">
@@ -72,7 +79,7 @@ export default function CommentCard(productId) {
                                         <div className="proportional-area"></div>
                                     </div>
                                     <div className="quantity-area">
-                                        <span>2</span>
+                                        <span>{onAmountRatingChange}</span>
                                     </div>
                                 </div>
                                 <div className="rating-four rating-items">
