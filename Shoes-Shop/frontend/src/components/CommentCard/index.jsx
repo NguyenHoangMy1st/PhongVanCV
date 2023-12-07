@@ -18,14 +18,14 @@ export default function CommentCard({ productId, onAmountRatingChange }) {
         }
 
         const formData = {
-            productId: productId?.productId,
+            productId: productId,
             review: reviewText,
             rating: value,
         };
 
         try {
             const response = await apiCreateReview.postCreateReview(formData);
-            console.log('response:', response.data);
+            console.log('response:', response);
 
             if (response) {
                 toast.success('Thêm đánh giá thành công');
