@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api_instance = axios.create({
-    baseURL: process.env.REACT_APP_BASE_URL=https://pbl6-shoes-shop-production-9e98.up.railway.app
+    baseURL: process.env.REACT_APP_BASE_URL=https://pbl6-shoes-shop-production-2639.up.railway.app
     ,
 });
 
