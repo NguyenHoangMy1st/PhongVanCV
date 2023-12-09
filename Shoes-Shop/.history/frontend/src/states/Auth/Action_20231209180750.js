@@ -44,7 +44,7 @@ export const login = (reqData) => async (dispatch) => {
     // console.log('reqData.data: ', reqData);
     try {
         const res = await api_instance.post(`/auth/signin`, reqData);
-        const user = res?.data;
+        const user = res.data;
         console.log(' ============', user);
         if (user) {
             localStorage.setItem('jwt', user.jwt);

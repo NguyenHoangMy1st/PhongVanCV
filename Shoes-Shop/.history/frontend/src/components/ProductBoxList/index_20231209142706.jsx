@@ -34,7 +34,7 @@ export default function ProductBoxList() {
                     salePrice={6.99}
                 />
                 <ProductBoxCard
-                    image={shoes4}
+                    image={shoes}
                     title="Top Rate"
                     name="Giày Jordan Cổ Thấp"
                     brand="Adidas"

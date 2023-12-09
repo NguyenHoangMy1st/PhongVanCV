@@ -13,7 +13,7 @@ export default function CartHistory() {
         try {
             const response = await apiBuyNow.postBuyNow();
             if (response) {
-                console.log('Đang chuyển sang trang thanh toán', response.data);
+                console.log('Đang chuyển sang trang thanh toán', re);
                 // const externalURL = response.data;
                 // window.location.href = externalURL;
             } else {

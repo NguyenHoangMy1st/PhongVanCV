@@ -1,22 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import apiCart from '../API/apiCart';
+import React from 'react';
 
 export default function Payment({ orderId, totalPrice, paymentTime, transactionId, isSuccess }) {
-    const [products, setProducts] = useState([]);
-    console.log(products);
-    const fetchCarts = async () => {
-        try {
-            const response = await apiCart.getAllCart();
-            setProducts(response.data);
-        } catch (error) {
-            console.error(error?.message);
-        }
-    };
-    // API cart
-    useEffect(() => {
-        // Gọi hàm fetchCarts
-        fetchCarts();
-    }, []);
     return (
         <div>
             <div className="container">
@@ -30,18 +14,13 @@ export default function Payment({ orderId, totalPrice, paymentTime, transactionI
                             <tr>
                                 <td>Thông tin đơn hàng:</td>
                                 <td>
-                                    {products?.cartItems?.map((item, index) => (
-                                        <div key={index}>
-                                            <p>{`Product   ${index + 1}: ${item?.product?.title} - Size: ${item?.size}
-                                             - Quantity: ${item?.quantity}`}</p>
-                                        </div>
-                                    ))}
+                                    <span>{orderId}</span>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Tổng tiền:</td>
                                 <td>
-                                    <span>{products.totalDiscountedPrice}</span>
+                                    <span>{totalPrice}</span>
                                 </td>
                             </tr>
                             <tr>

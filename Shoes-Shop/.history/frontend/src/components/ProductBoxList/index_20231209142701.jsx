@@ -18,7 +18,7 @@ export default function ProductBoxList() {
                     salePrice={5.99}
                 />
                 <ProductBoxCard
-                    image={shoes2}
+                    image={shoes}
                     title="Trending"
                     name="Giày Jordan Cổ Thấp"
                     brand="Nike"
@@ -26,7 +26,7 @@ export default function ProductBoxList() {
                     salePrice={5.99}
                 />
                 <ProductBoxCard
-                    image={shoes3}
+                    image={shoes}
                     title="New Arrivals"
                     name="Giày Jordan Cổ Thấp"
                     brand="Gucci"
@@ -34,7 +34,7 @@ export default function ProductBoxList() {
                     salePrice={6.99}
                 />
                 <ProductBoxCard
-                    image={shoes4}
+                    image={shoes}
                     title="Top Rate"
                     name="Giày Jordan Cổ Thấp"
                     brand="Adidas"

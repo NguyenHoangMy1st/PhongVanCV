@@ -30,10 +30,11 @@ export default function Payment({ orderId, totalPrice, paymentTime, transactionI
                             <tr>
                                 <td>Thông tin đơn hàng:</td>
                                 <td>
-                                    {products?.cartItems?.map((item, index) => (
+                                    {products.map((item, index) => (
                                         <div key={index}>
-                                            <p>{`Product   ${index + 1}: ${item?.product?.title} - Size: ${item?.size}
-                                             - Quantity: ${item?.quantity}`}</p>
+                                            <p>{`Sản phẩm ${index + 1}: ${item.product.name} - Size: ${
+                                                item.size
+                                            } - Số lượng: ${item.quantity}`}</p>
                                         </div>
                                     ))}
                                 </td>
