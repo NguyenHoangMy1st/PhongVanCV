@@ -1,12 +1,15 @@
 import axios from 'axios';
 
-const axiosClientGuest = axios.create({
+const axiosClient = axios.create({
     baseURL: 'https://pbl6-shoes-shop-production-0dfd.up.railway.app/api',
 });
 
 // Add a request interceptor
-axiosClientGuest.interceptors.request.use(
+axiosClient.interceptors.request.use(
     function (config) {
+        const access_token = localStorage.getItem('jwt');
+        config.headers.Authorization = `Bearer ${access_token}`;
+        // Do something before request is sent
         return config;
     },
     function (error) {
@@ -16,7 +19,7 @@ axiosClientGuest.interceptors.request.use(
 );
 
 // Add a response interceptor
-axiosClientGuest.interceptors.response.use(
+axiosClient.interceptors.response.use(
     function (response) {
         // Any status code that lie within the range of 2xx cause this function to trigger
         // Do something with response data
@@ -29,4 +32,4 @@ axiosClientGuest.interceptors.response.use(
     },
 );
 
-export default axiosClientGuest;
+export default axiosClient;
