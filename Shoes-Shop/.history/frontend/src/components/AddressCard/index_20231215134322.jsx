@@ -22,9 +22,10 @@ export default function AddressCard() {
             return null;
         }
 
-        // Tìm địa chỉ có id lớn nhất
+        // Tìm địa chỉ có chiều dài lớn nhất
         const maxAddress = profiles.addresses.reduce((max, address) => {
-            return address.id > max.id ? address : max;
+            const addressLength = `${address.streetAddress} ${address.city}`.length;
+            return addressLength > max.length ? address : max;
         }, profiles.addresses[0]);
 
         return maxAddress;
@@ -42,11 +43,6 @@ export default function AddressCard() {
                             <p className="address-p">{`${address.streetAddress} ${address.city}`}</p>
                         </div>
                     ))} */}
-                {maxAddress && (
-                    <div key={maxAddress.id} className="address-item">
-                        <p className="address-p">{`${maxAddress.streetAddress} ${maxAddress.city}`}</p>
-                    </div>
-                )}
                 <div className="address-phone">
                     <p className="address-phone-title">Phone Number:</p>
                     <p className="address-p">{profiles.mobile}</p>

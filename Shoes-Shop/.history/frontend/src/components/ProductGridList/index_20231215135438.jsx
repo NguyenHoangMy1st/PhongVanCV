@@ -93,7 +93,7 @@ export default function ProductGridList({ productSearch }) {
     }, [fetchData, selectedBrand, pageNumber]);
     useEffect(() => {
         handleSort('default');
-    }, []);
+    }, [sortCriteria]);
     return (
         <section>
             <div className="product-main container-layout">

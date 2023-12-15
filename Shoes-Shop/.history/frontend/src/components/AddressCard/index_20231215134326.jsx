@@ -22,9 +22,10 @@ export default function AddressCard() {
             return null;
         }
 
-        // Tìm địa chỉ có id lớn nhất
+        // Tìm địa chỉ có chiều dài lớn nhất
         const maxAddress = profiles.addresses.reduce((max, address) => {
-            return address.id > max.id ? address : max;
+            const addressLength = `${address.streetAddress} ${address.city}`.length;
+            return addressLength > max.length ? address : max;
         }, profiles.addresses[0]);
 
         return maxAddress;

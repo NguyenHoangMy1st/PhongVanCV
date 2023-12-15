@@ -58,6 +58,7 @@ export default function ProductGridList({ productSearch }) {
                     const priceSort = criteria === 'price_low' ? 'price_low' : 'price_high';
                     const response = await apiFilterPrice.getFilerPrice(priceSort);
                     setProducts(response.data.content);
+                    
                     setTotalPages(response.data.totalPages);
                 } else if (criteria === 'discountPersent') {
                     const sortedProducts = [...products].sort((a, b) => {
@@ -93,7 +94,7 @@ export default function ProductGridList({ productSearch }) {
     }, [fetchData, selectedBrand, pageNumber]);
     useEffect(() => {
         handleSort('default');
-    }, []);
+    }, [sortCriteria]);
     return (
         <section>
             <div className="product-main container-layout">

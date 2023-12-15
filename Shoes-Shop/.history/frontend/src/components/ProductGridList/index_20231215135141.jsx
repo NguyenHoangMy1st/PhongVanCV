@@ -10,7 +10,6 @@ import { toast } from 'react-toastify';
 
 export default function ProductGridList({ productSearch }) {
     const [products, setProducts] = useState([]);
-    console.log(products);
     const [isLoading, setIsLoading] = useState(false);
     let [searchParams] = useSearchParams();
     const selectedBrand = searchParams.get('brand');
@@ -93,7 +92,7 @@ export default function ProductGridList({ productSearch }) {
     }, [fetchData, selectedBrand, pageNumber]);
     useEffect(() => {
         handleSort('default');
-    }, []);
+    }, [sortCriteria]);
     return (
         <section>
             <div className="product-main container-layout">
