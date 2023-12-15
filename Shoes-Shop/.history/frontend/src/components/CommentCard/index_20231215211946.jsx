@@ -82,7 +82,7 @@ export default function CommentCard({ productId }) {
     };
     useEffect(() => {
         fetchReviewDetail();
-    }, []);
+    }, [fetchReviewDetail()]);
 
     const calculateAverageRating = () => {
         if (reviews.length === 0) {
