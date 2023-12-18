@@ -7,18 +7,14 @@ const CartContext = createContext();
 export const CartProvider = ({ children }) => {
     const [cartItems, setCartItems] = useState([]);
 
-    useEffect(() => {
-        const fetchCartProducts = async () => {
-            try {
-                const response = await apiCart.getAllCart();
-                setCartItems(response.data.cartItems);
-            } catch (error) {
-                // console.error('Error fetching cart products:', error);
-            }
-        };
-
-        fetchCartProducts();
-    }, []);
+    const fetchCartProducts = async () => {
+        try {
+            const response = await apiCart.getAllCart();
+            setCartItems(response.data.cartItems);
+        } catch (error) {
+            // console.error('Error fetching cart products:', error);
+        }
+    };
 
     const updateCartItems = async () => {
         try {
@@ -29,6 +25,13 @@ export const CartProvider = ({ children }) => {
         }
     };
 
+    useEffect(() => {
+        fetchCartProducts();
+    }, []);
+
+    useEffect(() => {
+        updateCartItems();
+    }, []);
     return <CartContext.Provider value={{ cartItems, setCartItems, updateCartItems }}>{children}</CartContext.Provider>;
 };
 
