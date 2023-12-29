@@ -32,7 +32,7 @@ export default function DeliveryAddressForm() {
                 toast.success('Thêm thông tin thành công ');
                 setTimeout(() => {
                     navigate('/pay?step=2');
-                }, 2000);
+                }, 500);
             } else {
                 toast.error('Có lỗi khi thêm thông tin');
             }

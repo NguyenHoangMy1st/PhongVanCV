@@ -40,10 +40,10 @@ export default function CartHistory() {
                 //         console.error('Error polling for success:', error);
                 //     }
                 // };
-                document.addEventListener('DOMContentLoaded', pollForSuccess);
-                return () => {
-                    document.removeEventListener('DOMContentLoaded', pollForSuccess);
-                };
+                // document.addEventListener('DOMContentLoaded', pollForSuccess);
+                // return () => {
+                //     document.removeEventListener('DOMContentLoaded', pollForSuccess);
+                // };
             } else {
                 console.error('Có lỗi khi thêm thanh toán ');
             }
