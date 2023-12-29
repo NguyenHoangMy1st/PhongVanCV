@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import apiCart from '~/api/user/apiCart';
 
 export default function Payment({ orderId, totalPrice, paymentTime, transactionId }) {
@@ -63,6 +64,9 @@ export default function Payment({ orderId, totalPrice, paymentTime, transactionI
                             </tr>
                         </tbody>
                     </table>
+                    <button>
+                        <Link to="/pay?step=1">Pay Again</Link>
+                    </button>
                 </div>
             </div>
         </div>

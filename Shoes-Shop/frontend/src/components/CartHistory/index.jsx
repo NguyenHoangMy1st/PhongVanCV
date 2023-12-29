@@ -19,7 +19,8 @@ export default function CartHistory() {
             console.log(response);
             if (response) {
                 const externalURL = response.data.vnpayUrl;
-                window.open(`${externalURL}`);
+                // window.open(`${externalURL}`);
+                window.location.href = externalURL;
                 const apiVNpay = await axiosClient.get('/api/payment/vnpay-payment');
                 const paymentInfoData = apiVNpay.data;
                 const pollForSuccess = async () => {
@@ -82,7 +83,7 @@ export default function CartHistory() {
             <div className="payment">
                 <span>Tổng số tiền cần thanh toán là: {products?.totalDiscountedPrice}</span>
                 <div className="payment-btn">
-                    <Button text="Buy Now" onClick={handleBuyNow} className={'payment-btn-buy'}></Button>
+                    <Button text="Pay" onClick={handleBuyNow} className={'payment-btn-buy'}></Button>
                 </div>
             </div>
         </div>
