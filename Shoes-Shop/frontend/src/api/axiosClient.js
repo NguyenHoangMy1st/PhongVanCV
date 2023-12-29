@@ -7,7 +7,7 @@ const axiosClient = axios.create({
 // Add a request interceptor
 axiosClient.interceptors.request.use(
     function (config) {
-        const access_token = sessionStorage.getItem('jwt');
+        const access_token = localStorage.getItem('jwt');
         if (access_token) {
             config.headers.Authorization = `Bearer ${access_token}`;
         }

@@ -14,13 +14,13 @@ const cx = classNames.bind(styles);
 const SideNav = () => {
     const navigate = useNavigate();
     const handleLogout = () => {
-        sessionStorage.removeItem('token');
-        sessionStorage.removeItem('user');
-        sessionStorage.removeItem('jwt');
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        localStorage.removeItem('jwt');
         setTimeout(() => {
             toast.success('Đăng xuất thành công');
             navigate('/login');
-        }, 2000);
+        }, 500);
     };
     return (
         <>

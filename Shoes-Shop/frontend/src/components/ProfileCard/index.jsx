@@ -11,15 +11,15 @@ export default function ProfileCard() {
     const [profiles, setProfiles] = useState([]);
     const [defaultAddress, setDefaultAddress] = useState(null);
 
-    const checksessionStorage = () => {
-        if (!sessionStorage.getItem('token') || !sessionStorage.getItem('user') || !sessionStorage.getItem('jwt')) {
+    const checklocalStorage = () => {
+        if (!localStorage.getItem('token') || !localStorage.getItem('user') || !localStorage.getItem('jwt')) {
             navigate('/login');
             return false;
         }
         return true;
     };
     const fetchProfile = async () => {
-        if (!checksessionStorage()) {
+        if (!checklocalStorage()) {
             return;
         }
         try {
@@ -66,12 +66,12 @@ export default function ProfileCard() {
     };
     const handleLogout = () => {
         toast.success('Đăng xuất thành công');
-        sessionStorage.removeItem('token');
-        sessionStorage.removeItem('user');
-        sessionStorage.removeItem('jwt');
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        localStorage.removeItem('jwt');
         setTimeout(() => {
             navigate('/login');
-        }, 2000);
+        }, 500);
     };
 
     const handleEdit = () => {

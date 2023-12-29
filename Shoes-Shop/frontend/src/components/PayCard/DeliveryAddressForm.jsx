@@ -28,7 +28,7 @@ export default function DeliveryAddressForm() {
             const response = await apiCreateOrder.postCreateOrder(address);
 
             if (response) {
-                sessionStorage.setItem('currentOrderId', response.data.id);
+                localStorage.setItem('currentOrderId', response.data.id);
                 toast.success('Thêm thông tin thành công ');
                 setTimeout(() => {
                     navigate('/pay?step=2');

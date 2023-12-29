@@ -38,7 +38,7 @@ export default function PayCard() {
         toast.success('Giao dịch đã hoàn thành!');
         setTimeout(() => {
             navigate('/');
-        }, 2000); // 1000 milliseconds = 1 second
+        }, 500); // 1000 milliseconds = 1 second
     };
 
     return (

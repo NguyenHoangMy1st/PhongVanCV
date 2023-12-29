@@ -14,7 +14,7 @@ import {
     FIND_PRODUCT_SUCCESS,
 } from './ActionType';
 import { toast } from 'react-toastify';
-const token = sessionStorage.getItem('jwt');
+const token = localStorage.getItem('jwt');
 export const findProducts = (reqData) => async (dispatch) => {
     dispatch({ type: FIND_PRODUCT_REQUEST });
 

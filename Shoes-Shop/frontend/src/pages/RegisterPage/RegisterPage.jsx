@@ -55,10 +55,10 @@ const RegisterPage = () => {
             const response = await apiRegister.postRegister(formData);
             if (response.status === 201) {
                 toast.success('Đăng ký thành công');
-                sessionStorage.setItem('user', JSON.stringify(formData));
+                localStorage.setItem('user', JSON.stringify(formData));
                 setTimeout(() => {
                     navigate('/login');
-                }, 2000);
+                }, 500);
             }
         } catch (error) {
             toast.error(error?.message);
