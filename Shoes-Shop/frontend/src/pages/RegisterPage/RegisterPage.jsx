@@ -55,7 +55,7 @@ const RegisterPage = () => {
             const response = await apiRegister.postRegister(formData);
             if (response.status === 201) {
                 toast.success('Đăng ký thành công');
-                localStorage.setItem('user', JSON.stringify(formData));
+                sessionStorage.setItem('user', JSON.stringify(formData));
                 setTimeout(() => {
                     navigate('/login');
                 }, 500);

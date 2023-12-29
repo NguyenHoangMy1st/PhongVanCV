@@ -14,8 +14,8 @@ export default function CartList() {
     const [products, setProducts] = useState([]);
     console.log(products);
     const navigate = useNavigate();
-    const checklocalStorage = () => {
-        if (!localStorage.getItem('token') || !localStorage.getItem('user') || !localStorage.getItem('jwt')) {
+    const checksessionStorage = () => {
+        if (!sessionStorage.getItem('token') || !sessionStorage.getItem('user') || !sessionStorage.getItem('jwt')) {
             navigate('/login');
 
             return false;
@@ -24,7 +24,7 @@ export default function CartList() {
     };
     // console.log(products);
     const fetchCarts = async () => {
-        if (!checklocalStorage()) {
+        if (!checksessionStorage()) {
             return;
         }
         try {

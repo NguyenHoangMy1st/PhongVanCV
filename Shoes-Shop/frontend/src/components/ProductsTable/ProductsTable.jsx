@@ -13,7 +13,7 @@ const cx = classNames.bind(styles);
 const ProductsTable = ({ handleProductUpdate }) => {
     const dispatch = useDispatch();
     const { products } = useSelector((store) => store);
-    const jwt = localStorage.getItem('jwt');
+    const jwt = sessionStorage.getItem('jwt');
 
     const pageSize = 5;
     const [currentPage, setCurrentPage] = useState(0);

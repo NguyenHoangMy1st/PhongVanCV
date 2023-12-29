@@ -9,7 +9,7 @@ import axiosClient from '~/api/axiosClient';
 export default function CartHistory() {
     const [products, setProducts] = useState([]);
     const handleBuyNow = async () => {
-        const currentOrderId = localStorage.getItem('currentOrderId');
+        const currentOrderId = sessionStorage.getItem('currentOrderId');
         const formData = {
             currentOrderId: currentOrderId,
         };

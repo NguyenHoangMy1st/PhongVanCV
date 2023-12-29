@@ -7,8 +7,8 @@ import styles from './LoginPage.module.scss';
 import apiLogin from '~/api/user/apiLogin';
 
 const cx = classNames.bind(styles);
-const getTokenFromlocalStorage = () => {
-    return localStorage.getItem('token');
+const getTokenFromsessionStorage = () => {
+    return sessionStorage.getItem('token');
 };
 export default function LoginPage() {
     const [username, setUsername] = useState('');
@@ -16,7 +16,7 @@ export default function LoginPage() {
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
     useEffect(() => {
-        const storedToken = getTokenFromlocalStorage();
+        const storedToken = getTokenFromsessionStorage();
         if (storedToken) {
         }
     }, []);
@@ -30,9 +30,9 @@ export default function LoginPage() {
             const response = await apiLogin.postLogin(formData);
             console.log(response);
             if (response.status === 201) {
-                localStorage.setItem('token', response?.data?.jwt);
-                localStorage.setItem('user', JSON.stringify(formData));
-                localStorage.setItem('jwt', response?.data?.jwt);
+                sessionStorage.setItem('token', response?.data?.jwt);
+                sessionStorage.setItem('user', JSON.stringify(formData));
+                sessionStorage.setItem('jwt', response?.data?.jwt);
                 if (response?.data?.role === 'admin') {
                     toast.success('Đang vào trang admin');
                     setTimeout(() => {
