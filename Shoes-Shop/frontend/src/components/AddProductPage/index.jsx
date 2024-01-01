@@ -10,7 +10,7 @@ export default function AddProductPage() {
         'ĐÔI GIÀY LẤY CẢM HỨNG TỪ GIÀY CHẠY BỘ CỔ ĐIỂN VỚI PHONG CÁCH HIỆN ĐẠI Vẻ ngoài của bạn sẽ luôn trong khỏe khoắn năng động suốt ngày dài khi diện đôi Giày Reebok Rider V này',
     );
     const [priceProduct, setPriceProduct] = useState('200000');
-    const [warehousePriceProduct, setWarehousePriceProduct] = useState('200000');
+    const [warehousePriceProduct, setWarehousePriceProduct] = useState('220000');
 
     const [discountedPriceProduct, setDiscountedPriceProduct] = useState('180000');
     const [discountPersentProduct, setDiscountPersentProduct] = useState('10');

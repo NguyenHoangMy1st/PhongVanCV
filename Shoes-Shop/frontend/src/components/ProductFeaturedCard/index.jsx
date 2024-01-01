@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import './style.scss';
 import Button from '../../components/Button';
-import images from '~/assets/images';
 import { toast } from 'react-toastify';
 
 export default function ProductFeaturedCard(product) {

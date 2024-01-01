@@ -7,8 +7,10 @@ import Button from '~/pages/Button';
 import apiCart from '~/api/user/apiCart';
 import apiUpdateCartItems from '~/api/user/apiUPdateCartItems';
 import apiRemoveCartItems from '~/api/user/apiRemoveCartItems';
+import { useCart } from '~/api/user/CartContext';
 
 export default function CartList() {
+    const { setCartItems } = useCart();
     const [products, setProducts] = useState([]);
     const navigate = useNavigate();
     const checksessionStorage = () => {
@@ -29,14 +31,28 @@ export default function CartList() {
         } catch (error) {
             console.log(error);
         }
-    };
+    }; // API cart
+    useEffect(() => {
+        // Gọi hàm fetchCarts
+        fetchCarts();
+    }, []);
 
     const handleQuantityChange = async (productId, newQuantity) => {
+        const product = products.cartItems.find((item) => item.id === productId);
+
+        if (!product) {
+            console.error(`Product with ID ${productId} not found.`);
+            return;
+        }
+
         const formData = {
             quantity: newQuantity,
+            size: product.size, // Use the size property from the found product
         };
+        console.log(formData);
         try {
             const response = await apiUpdateCartItems.putUpdateCartItems(productId, formData);
+            console.log(response);
             if (response) {
                 fetchCarts();
             } else {
@@ -66,6 +82,7 @@ export default function CartList() {
             if (response) {
                 fetchCarts();
                 toast.success('Product deletion successful');
+                setCartItems((prevCartItems) => prevCartItems.filter((item) => item.id !== productId));
             } else {
             }
         } catch (error) {
@@ -81,6 +98,7 @@ export default function CartList() {
             fetchCarts();
             window.location.reload();
             toast.success('Delete all products successfully');
+            setCartItems([]);
         } catch (error) {
             toast.error('All products removed');
         }
@@ -93,11 +111,6 @@ export default function CartList() {
             navigate('/pay?step=1');
         }
     };
-    // API cart
-    useEffect(() => {
-        // Gọi hàm fetchCarts
-        fetchCarts();
-    }, []);
 
     return (
         <>
