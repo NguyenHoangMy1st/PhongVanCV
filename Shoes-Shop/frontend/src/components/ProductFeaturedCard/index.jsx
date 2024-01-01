@@ -6,7 +6,6 @@ import Button from '../../components/Button';
 import { toast } from 'react-toastify';
 
 export default function ProductFeaturedCard(product) {
-    console.log(product);
     const navigate = useNavigate();
     const handleAddtocart = async () => {
         toast.success('Added product to cart successfully');

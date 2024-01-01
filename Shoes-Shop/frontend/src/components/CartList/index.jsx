@@ -33,7 +33,6 @@ export default function CartList() {
         }
     }; // API cart
     useEffect(() => {
-        // Gọi hàm fetchCarts
         fetchCarts();
     }, []);
 
@@ -47,7 +46,7 @@ export default function CartList() {
 
         const formData = {
             quantity: newQuantity,
-            size: product.size, // Use the size property from the found product
+            size: product.size,
         };
         console.log(formData);
         try {
@@ -81,7 +80,7 @@ export default function CartList() {
             const response = await apiRemoveCartItems.delRemoveCartItems(productId);
             if (response) {
                 fetchCarts();
-                toast.success('Product deletion successful');
+                // toast.success('Product deletion successful');
                 setCartItems((prevCartItems) => prevCartItems.filter((item) => item.id !== productId));
             } else {
             }
@@ -111,7 +110,12 @@ export default function CartList() {
             navigate('/pay?step=1');
         }
     };
-
+    const handleEditProduct = (productId, item) => {
+        navigate(`/product/${productId}`);
+        setTimeout(() => {
+            handleDeleteProduct(item);
+        }, 2000);
+    };
     return (
         <>
             {products?.cartItems?.length > 0 ? (
@@ -141,6 +145,7 @@ export default function CartList() {
                                         key={product?.id}
                                         product={product}
                                         onDelete={() => handleDeleteProduct(product.id)}
+                                        onEditProduct={() => handleEditProduct(product.product.id, product.id)}
                                         onIncreaseQuantity={() => handleIncreaseQuantity(product.id)}
                                         onDeCreaseQuantity={() => handleDecreaseQuantity(product.id)}
                                     />
