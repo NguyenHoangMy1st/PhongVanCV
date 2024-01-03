@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './style-prefix.scss';
 import images from '~/assets/images';
 import { CheckRoleContext } from '~/context/CheckRoleProvider';
+import Icon from '~/components/Icons/Icon';
 
 export default function Header({ cartItems = [] }) {
     const { role } = useContext(CheckRoleContext);
@@ -77,14 +78,14 @@ export default function Header({ cartItems = [] }) {
                     </nav>
                     <div className="header-user-actions">
                         <Link to="/profile" className="action-btn">
-                            <i class="fa fa-user-o" aria-hidden="true"></i>
+                            <i class="fa fa-user" aria-hidden="true"></i>
                         </Link>
                         <Link to="/cart" className="action-btn">
                             <i className="fa fa-shopping-cart" aria-hidden="true"></i>
                             <span className="count">{cartItemCount}</span>
                         </Link>
                         <Link to="/order" className="action-btn">
-                            <i className="fa fa-history" aria-hidden="true"></i>
+                            <Icon classes={'action-btn-history-order'} icon="history_order" color="#000" />
                         </Link>
                     </div>
                 </div>

@@ -21,6 +21,9 @@
         display: flex;
         gap: 0 50px;
         border-radius: var(--border-radius-md);
+        background: url(../../assets/images/contain/background.png);
+        background-repeat: no-repeat;
+        background-size: cover;
     }
     &-featured-link {
         display: block;

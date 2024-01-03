@@ -208,7 +208,7 @@ export default function AboutPage({ quantity = 1 }) {
                                                 Add To Cart
                                             </Button>
                                         )}
-                                        {selectedSizeQuantity <= 0 ? (
+                                        {sessionStorage.getItem('jwt') === null || selectedSizeQuantity <= 0 ? (
                                             <Button
                                                 primary
                                                 small
@@ -244,7 +244,7 @@ export default function AboutPage({ quantity = 1 }) {
                     </div>
                     <div className="information-item">
                         <span className="information-text">Product launched at</span>
-                        <div className="information-show">{new Date(productDetail.createAt).toLocaleString()}</div>
+                        <div className="information-show">{new Date(productDetail.createAt).toLocaleDateString()}</div>
                     </div>
                     <div className="information-item">
                         <span className="information-text">Discount</span>
