@@ -54,6 +54,9 @@ export default function ProfileCard() {
     // show 1 trong 2
     const [showPersonal, setShowPersonal] = useState(true);
     const [showChangePassword, setShowChangePassword] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+    const [showNewPassword, setShowNewPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const navigate = useNavigate();
 
     const handleShowPersonal = () => {
@@ -207,22 +210,6 @@ export default function ProfileCard() {
                                     readOnly={!isEditing}
                                 />
                             </div>
-                            {/* <div className="profile-sex">
-                                <label className="profile-show-label">Giới tính</label>
-                                <input
-                                    type="radio"
-                                    defaultValue={profiles.gender}
-                                    checked={profiles.gender === 'male'}
-                                />
-                                <label>Nam</label>
-
-                                <input
-                                    type="radio"
-                                    defaultValue={profiles.gender}
-                                    checked={profiles.gender === 'female'}
-                                />
-                                <label>Nữ</label>
-                            </div> */}
 
                             <div className="profile-btn-update">
                                 {isEditing ? (
@@ -235,30 +222,69 @@ export default function ProfileCard() {
                         <div className={showChangePassword ? 'profile-show-changepassword' : 'hidden'}>
                             <div className="profile-username">
                                 <label className="profile-show-label">Oldpassword</label>
-                                <input
-                                    type="password"
-                                    className="profile-show-input"
-                                    value={oldpassword}
-                                    onChange={(event) => setOldpassword(event.target.value)}
-                                ></input>
+                                <div className="bbb">
+                                    <input
+                                        type={showPassword ? 'text' : 'password'}
+                                        className="profile-show-input"
+                                        value={oldpassword}
+                                        onChange={(event) => setOldpassword(event.target.value)}
+                                    ></input>
+                                    <button
+                                        type="button"
+                                        onClick={() => setShowPassword(!showPassword)}
+                                        style={{ background: 'transparent', position: 'relative', right: 25 }}
+                                        className="toggle-password-button"
+                                    >
+                                        <i
+                                            className={`fa ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`}
+                                            aria-hidden="true"
+                                        ></i>
+                                    </button>
+                                </div>
                             </div>
                             <div className="profile-password">
                                 <label className="profile-show-label">New Password</label>
-                                <input
-                                    type="password"
-                                    className="profile-show-input"
-                                    value={newpassword}
-                                    onChange={(event) => setNewpassword(event.target.value)}
-                                ></input>
+                                <div className="bbb">
+                                    <input
+                                        type={showNewPassword ? 'text' : 'password'}
+                                        className="profile-show-input"
+                                        value={newpassword}
+                                        onChange={(event) => setNewpassword(event.target.value)}
+                                    ></input>
+                                    <button
+                                        type="button"
+                                        onClick={() => setShowNewPassword(!showNewPassword)}
+                                        style={{ background: 'transparent', position: 'relative', right: 25 }}
+                                        className="toggle-password-button"
+                                    >
+                                        <i
+                                            className={`fa ${showNewPassword ? 'fa-eye-slash' : 'fa-eye'}`}
+                                            aria-hidden="true"
+                                        ></i>
+                                    </button>
+                                </div>
                             </div>
                             <div className="profile-passwordconfim">
                                 <label className="profile-show-label">Confim Password</label>
-                                <input
-                                    type="password"
-                                    className="profile-show-input"
-                                    value={passwordconfim}
-                                    onChange={(event) => setPasswordconfim(event.target.value)}
-                                ></input>
+                                <div className="bbb">
+                                    <input
+                                        type={showConfirmPassword ? 'text' : 'password'}
+                                        className="profile-show-input"
+                                        value={passwordconfim}
+                                        onChange={(event) => setPasswordconfim(event.target.value)}
+                                    ></input>
+                                    <button
+                                        type="button"
+                                        onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                                        style={{ background: 'transparent', position: 'relative', right: 25 }}
+                                        className="toggle-password-button"
+                                    >
+                                        <i
+                                            className={`fa ${showConfirmPassword ? 'fa-eye-slash' : 'fa-eye'}`}
+                                            aria-hidden="true"
+                                        ></i>
+                                    </button>
+                                </div>
                             </div>
                             <div className="profile-btn-change">
                                 <Button
