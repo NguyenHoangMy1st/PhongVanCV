@@ -53,11 +53,11 @@ export default function Payment({ paymentTime, transactionId }) {
                     <h1 className={`my-3 text-${isSuccess ? 'success' : 'danger'} text-center`}>
                         {isSuccess ? (
                             <>
-                                Thanh toán thành công <i className="fa fa-check" aria-hidden="true"></i>
+                                Payment success <i className="fa fa-check" aria-hidden="true"></i>
                             </>
                         ) : (
                             <>
-                                Thanh toán thất bại <i className="fa fa-times" aria-hidden="true"></i>
+                                Payment failed <i className="fa fa-times" aria-hidden="true"></i>
                             </>
                         )}
                     </h1>
@@ -70,11 +70,11 @@ export default function Payment({ paymentTime, transactionId }) {
                             <img src={images.paymentFail} alt="Payment Failure" className="img-fluid" />
                         </div>
                     )}
-                    <h2 className="my-2">Chi tiết đơn hàng</h2>
+                    <h2 className="my-2">Order details</h2>
                     <table className="table table-bordered">
                         <tbody>
                             <tr>
-                                <td>Thông tin đơn hàng:</td>
+                                <td>Information line:</td>
                                 <td>
                                     {products?.cartItems?.map((item, index) => (
                                         <div key={index}>
@@ -85,7 +85,7 @@ export default function Payment({ paymentTime, transactionId }) {
                                 </td>
                             </tr>
                             <tr>
-                                <td>Tổng tiền:</td>
+                                <td>Total amount:</td>
                                 <td>
                                     <span>{products.totalDiscountedPrice}</span>
                                 </td>

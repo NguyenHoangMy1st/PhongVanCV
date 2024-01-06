@@ -116,7 +116,7 @@ export default function OrderUser() {
             )}
             {toggleDetail ? (
                 <div>
-                    <h1 className="orderDetail container-layout">Chi tiết đơn hàng</h1>
+                    <h1 className="orderDetail container-layout">Order details</h1>
                     <TableContainer
                         component={Paper}
                         variant="outlined"

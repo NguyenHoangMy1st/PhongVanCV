@@ -57,7 +57,7 @@ export default function CartHistory() {
                     })}
             </div>
             <div className="payment">
-                <span>Tổng số tiền cần thanh toán là: {products?.totalDiscountedPrice}</span>
+                <span>The total amount to be paid is:{products?.totalDiscountedPrice}</span>
                 <div className="payment-btn">
                     <Button text="Pay" onClick={handleBuyNow} className={'payment-btn-buy'}></Button>
                 </div>
