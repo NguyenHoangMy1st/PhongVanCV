@@ -422,7 +422,8 @@ LƯỢM NHẶT CỦA 1 BẠN TRONG GROUP
 23: Em biết TypeScript không.
 24: Em có biết về thư viện hay framework nào hỗ trợ server-side-rendering không ?
 25: Theo em ReactJS là CSR hay SSR.
-26. UseMemo() là gì ?
-27. useRef() là gì ?
-28. useReducer() là gì ?
+26: useCallBack() là gì?
+27. UseMemo() là gì ?
+28. useRef() là gì ?
+29. useReducer() là gì ?
 			
